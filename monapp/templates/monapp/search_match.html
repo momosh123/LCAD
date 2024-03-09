@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rechercher un Match</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_1.css' %}">
+</head>
+<body>
+    <h1>Rechercher un match de Ligue 1 Française</h1>
+    
+    <nav>
+        <ul class="tabs">
+            <li class="tab"><a href="/monapp/season-search/">Statistique d'une saison</a></li>
+            <li class="tab"><a href="/monapp/ajout-match/">Ajoutez un match</a></li>
+            <li class="tab"><a href="/monapp/search-match/">Rechercher un match</a></li>
+            <li class="tab"><a href="/monapp/export-season/">Exporter une saison</a></li>
+            <li class="tab"><a href="/monapp/import-season/">Importer une saison</a></li>
+            <li class="tab"><a href="/monapp/delete-season/">Supprimer une saison</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <h2>Rechercher un Match</h2>
+        
+        <!-- Afficher le formulaire de sélection de saison -->
+        <form method="get" action="">
+            <div>
+                {{ season_form.as_p }}
+                <input type="submit" value="Choisir la saison">
+            </div>
+        </form>
+        
+        <!-- Afficher le formulaire de sélection de match si une saison est choisie -->
+        {% if request.GET.season %}
+            <form method="get" action="">
+                <!-- Inclure le champ de saison caché pour conserver la saison sélectionnée -->
+                <input type="hidden" name="season" value="{{ request.GET.season }}">
+                
+                <div>
+                    {{ match_form.as_p }}
+                    <input type="submit" value="Rechercher le match">
+                </div>
+            </form>
+        {% endif %}
+        
+        <!-- Afficher le résultat du match -->
+        {% if match %}
+            <h3>Résultat du Match</h3>
+            <p><strong>Saison :</strong> {{ match.season }}</p>
+            <p><strong>Équipe à domicile :</strong> {{ match.hometeam }}</p>
+            <p><strong>Équipe à l'extérieur :</strong> {{ match.awayteam }}</p>
+            <p><strong>Buts à domicile :</strong> {{ match.hometeamgoals }}</p>
+            <p><strong>Buts à l'extérieur :</strong> {{ match.awayteamgoals }}</p>
+            <p><strong>Vainqueur :</strong> {{ match.winner }}</p>
+            <a href="{% url 'admin:monapp_match_change' match.id %}">Modifier ce match</a> |
+            <a href="{% url 'admin:monapp_match_delete' match.id %}">Supprimer ce match</a>
+
+        {% elif match is None and request.GET.season %}
+            <p>Sélectionnez les équipes pour voir le résultat du match.</p>
+        {% elif match is None %}
+            <p>Aucun match trouvé pour les critères donnés.</p>
+        {% endif %}
+        
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </section>
+</body>
+</html>

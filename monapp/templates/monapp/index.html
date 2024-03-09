@@ -1,0 +1,21 @@
+<!-- templates/monapp/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon App</title>
+</head>
+<body>
+    <h1>Bienvenue sur Mon App!</h1>
+    {% if items %}
+        <ul>
+            {% for item in items %}
+                <li>{{ item.nom }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun élément trouvé.</p>
+    {% endif %}
+</body>
+</html>

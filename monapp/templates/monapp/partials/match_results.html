@@ -1,0 +1,11 @@
+<!-- monapp/templates/monapp/partials/match_results.html -->
+{% for match in matches %}
+    <div class="match-result">
+        <p>Season: {{ match.season }}</p>
+        <p>Home Team: {{ match.hometeam }} - {{ match.hometeamgoals }}</p>
+        <p>Away Team: {{ match.awayteam }} - {{ match.awayteamgoals }}</p>
+        <!-- Ajoutez plus de détails selon vos besoins -->
+    </div>
+{% empty %}
+    <p>Aucun match trouvé pour cette sélection.</p>
+{% endfor %}

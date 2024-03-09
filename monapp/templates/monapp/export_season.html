@@ -1,0 +1,32 @@
+
+
+{% load static %} <!-- Charge les tags pour les fichiers statiques -->
+
+{% block head %} <!-- Supposant que base.html a un block 'head' pour les éléments spécifiques de <head> -->
+<head>
+    <meta charset="UTF-8">
+    <title>Exporter une saison</title>
+    <link rel="stylesheet" href="{% static 'css/style_1.css' %}">
+    <!-- Pas besoin de balise <style> vide. Retirez-la ou ajoutez du CSS ici si nécessaire. -->
+</head>
+{% endblock %}
+
+{% block content %}
+<body>
+    <h1>Exporter les matches d'une saison de ligue 1 Française</h1>
+    <ul class="tabs">
+        <li class="tab"><a href="http://127.0.0.1:8000/monapp/season-search/">Statistique d'une saison</a></li>
+        <li class="tab"><a href="http://127.0.0.1:8000/monapp/ajout-match/">Ajoutez un match</a></li>
+        <li class="tab"><a href="http://127.0.0.1:8000/monapp/search-match/">Rechercher un match</a></li>
+        <li class="tab"><a href="http://127.0.0.1:8000/monapp/export-season/">Exporter une saison</a></li>
+        <li class="tab"><a href="http://127.0.0.1:8000/monapp/import-season/">Importer une saison</a></li>
+        <li class="tab"><a href="http://127.0.0.1:8000/monapp/delete-season/">Supprimer une saison</a></li>
+    </ul>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Exporter en CSV</button>
+    </form>
+</body>
+{% endblock %}

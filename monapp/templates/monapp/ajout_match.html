@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un Match</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_1.css' %}">
+</head>
+<body>
+    <h1>Ajouter un match de ligue 1 Francaise</h1>
+    <ul class="tabs">
+        <li class="tab"><a href="/monapp/season-search/">Statistique d'une saison</a></li>
+        <li class="tab"><a href="/monapp/ajout-match/">Ajoutez un match</a></li>
+        <li class="tab"><a href="/monapp/search-match/">Rechercher un match</a></li>
+        <li class="tab"><a href="/monapp/export-season/">Exporter une saison</a></li>
+        <li class="tab"><a href="/monapp/import-season/">Importer une saison</a></li>
+        <li class="tab"><a href="/monapp/delete-season/">Supprimer une saison</a></li>
+    </ul>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ajouter le match</button>
+    </form>
+</body>
+</html>

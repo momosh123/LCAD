@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultats de la saison</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_1.css' %}">
+</head>
+<body>
+    <h1>Bienvenue dans la page des Statistiques de saison de la Ligue 1 Française</h1>
+    <ul class="tabs">
+        <li class="tab"><a href="/monapp/season-search/">Statistique d'une saison</a></li>
+        <li class="tab"><a href="/monapp/ajout-match/">Ajoutez un match</a></li>
+        <li class="tab"><a href="/monapp/search-match/">Rechercher un match</a></li>
+        <li class="tab"><a href="/monapp/export-season/">Exporter une saison</a></li>
+        <li class="tab"><a href="/monapp/import-season/">Importer une saison</a></li>
+        <li class="tab"><a href="/monapp/delete-season/">Supprimer une saison</a></li>
+    </ul>
+    
+    <h2>Statistiques d'une saison</h2>
+    <form method="get">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Afficher</button>
+    </form>
+
+    {% if total_goals is not None %}
+        <h2>Statistiques pour la saison {{ season }}</h2>
+        <p>Nombre total de matchs joués dans la saison: {{ total_matches_played }}</p>
+        <p>Nombre total de buts: {{ total_goals }}</p>
+        <p>Buts à domicile: {{ home_goals }}</p>
+        <p>Buts à l'extérieur: {{ away_goals }}</p>
+        <p>Taux de victoire à domicile: {{ home_win_rate }}%</p>
+        <p>Taux de victoire à l'extérieur: {{ away_win_rate }}%</p>
+
+        <h3>Top des équipes avec le plus de victoires</h3>
+        <ul>
+        {% for team in team_wins %}
+            <li>{{ team.winner }} - {{ team.wins }} victoires</li>
+        {% empty %}
+            <li>Aucune équipe trouvée</li>
+        {% endfor %}
+        </ul>
+
+        <h3>Top des équipes avec le plus de défaites</h3>
+        <ul>
+        {% for team in team_losses %}
+            <li>{{ team.loser }} - {{ team.losses }} défaites</li>
+        {% empty %}
+            <li>Aucune équipe trouvée</li>
+        {% endfor %}
+        </ul>
+
+        <h3>Top des équipes avec le plus de buts marqués</h3>
+        <ul>
+        {% for team in team_goals %}
+            <li>{{ team.team }} - {{ team.total_goals }} buts</li>
+        {% empty %}
+            <li>Aucune équipe trouvée</li>
+        {% endfor %}
+        </ul>
+
+        <h3>Classement final</h3>
+        <ol>
+        {% for team in final_standings %}
+            <li>{{ team.team }} : {{ team.points }} points</li>
+        {% endfor %}
+        </ol>
+
+        {% if execution_time %}
+            <h3>Temps d'exécution de la requête</h3>
+            <p>Temps d'exécution de la requête: {{ execution_time }} secondes.</p>
+        {% endif %}
+    {% endif %}
+
+    <footer>
+        <p>Ce site est réalisé par @Mamadou_SOW sous la supervision d'Eddy Carron dans le cadre du cours de Langage et Architecture Données.</p>
+        <a href="https://www.linkedin.com/in/mamadou-sow-7b0b31209/" target="_blank">
+            <img src="{% static 'images/LinkedIn.png' %}" alt="LinkedIn" style="width: 40px; height: auto;">
+        </a>
+        <a href="https://isfa.univ-lyon1.fr/ target="_blank">
+            <img src="{% static 'images/ISFA.png' %}" alt="ISFA" style="width: 40px; height: auto;">
+        </a>
+    </footer>
+</body>
+</html>

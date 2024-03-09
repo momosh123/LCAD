@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4; /* Couleur de fond en gris */
+}
+
+.tabs {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #007bff; /* Couleur de fond des onglets en bleu */
+}
+
+.tab {
+    float: left;
+}
+
+.tab a {
+    display: block;
+    color: white; /* Texte des onglets en blanc */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.tab a:hover {
+    background-color: #0056b3; /* Couleur de fond des onglets au survol */
+}
+
+h2 {
+    color: #007bff; /* Titres h2 en bleu */
+}
