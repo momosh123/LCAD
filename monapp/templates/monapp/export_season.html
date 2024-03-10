@@ -15,12 +15,12 @@
 <body>
     <h1>Exporter les matches d'une saison de ligue 1 Française</h1>
     <ul class="tabs">
-        <li class="tab"><a href="http://127.0.0.1:8000/monapp/season-search/">Statistique d'une saison</a></li>
-        <li class="tab"><a href="http://127.0.0.1:8000/monapp/ajout-match/">Ajoutez un match</a></li>
-        <li class="tab"><a href="http://127.0.0.1:8000/monapp/search-match/">Rechercher un match</a></li>
-        <li class="tab"><a href="http://127.0.0.1:8000/monapp/export-season/">Exporter une saison</a></li>
-        <li class="tab"><a href="http://127.0.0.1:8000/monapp/import-season/">Importer une saison</a></li>
-        <li class="tab"><a href="http://127.0.0.1:8000/monapp/delete-season/">Supprimer une saison</a></li>
+        <li class="tab"><a href="/monapp/season-search/">Statistique d'une saison</a></li>
+        <li class="tab"><a href="/monapp/ajout-match/">Ajoutez un match</a></li>
+        <li class="tab"><a href="/monapp/search-match/">Rechercher un match</a></li>
+        <li class="tab"><a href="/monapp/export-season/">Exporter une saison</a></li>
+        <li class="tab"><a href="/monapp/import-season/">Importer une saison</a></li>
+        <li class="tab"><a href="/monapp/delete-season/">Supprimer une saison</a></li>
     </ul>
 
     <form method="post">
@@ -28,5 +28,14 @@
         {{ form.as_p }}
         <button type="submit">Exporter en CSV</button>
     </form>
+    <footer>
+        <p>Ce site est réalisé par @Mamadou_SOW sous la supervision d'Eddy Carron dans le cadre du cours de Langage et Architecture Données.</p>
+        <a href="https://www.linkedin.com/in/mamadou-sow-7b0b31209/" target="_blank">
+            <img src="{% static 'images/LinkedIn.png' %}" alt="LinkedIn" style="width: 40px; height: auto;">
+        </a>
+        <a href="https://isfa.univ-lyon1.fr/ target="_blank">
+            <img src="{% static 'images/ISFA.png' %}" alt="ISFA" style="width: 40px; height: auto;">
+        </a>
+    </footer>
 </body>
 {% endblock %}

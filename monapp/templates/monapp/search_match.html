@@ -21,9 +21,7 @@
     </nav>
 
     <section>
-        <h2>Rechercher un Match</h2>
         
-        <!-- Afficher le formulaire de sélection de saison -->
         <form method="get" action="">
             <div>
                 {{ season_form.as_p }}
@@ -31,10 +29,8 @@
             </div>
         </form>
         
-        <!-- Afficher le formulaire de sélection de match si une saison est choisie -->
         {% if request.GET.season %}
             <form method="get" action="">
-                <!-- Inclure le champ de saison caché pour conserver la saison sélectionnée -->
                 <input type="hidden" name="season" value="{{ request.GET.season }}">
                 
                 <div>
@@ -44,7 +40,6 @@
             </form>
         {% endif %}
         
-        <!-- Afficher le résultat du match -->
         {% if match %}
             <h3>Résultat du Match</h3>
             <p><strong>Saison :</strong> {{ match.season }}</p>
@@ -66,5 +61,14 @@
             <p class="error">{{ error }}</p>
         {% endif %}
     </section>
+    <footer>
+        <p>Ce site est réalisé par @Mamadou_SOW sous la supervision d'Eddy Carron dans le cadre du cours de Langage et Architecture Données.</p>
+        <a href="https://www.linkedin.com/in/mamadou-sow-7b0b31209/" target="_blank">
+            <img src="{% static 'images/LinkedIn.png' %}" alt="LinkedIn" style="width: 40px; height: auto;">
+        </a>
+        <a href="https://isfa.univ-lyon1.fr/ target="_blank">
+            <img src="{% static 'images/ISFA.png' %}" alt="ISFA" style="width: 40px; height: auto;">
+        </a>
+    </footer>
 </body>
 </html>
